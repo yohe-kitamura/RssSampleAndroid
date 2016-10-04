@@ -18,19 +18,24 @@ public class UxMilkRepository {
 
     private static final String TAG = "UxMilkRepository";
 
+    /**
+     * UxMilkRssを取得
+     * @param listener コールバック用リスナー
+     */
     public void getUxMilkRss(final NetworkListener<UxMilkRss> listener) {
 
         if (listener == null) {
             throw new IllegalArgumentException("listener should not null ");
         }
 
-        //Retrofitビルド
+        //Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(UX_MILK)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
+        //Rx
         UxMilkService uxMilkService = retrofit.create(UxMilkService.class);
         uxMilkService.get().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

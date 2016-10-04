@@ -16,11 +16,18 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
         this.view = view;
     }
 
+    /**
+     * データ取得
+     */
     public void loadDate(){
         UxMilkRepository repository = createMilkRepository();
         repository.getUxMilkRss(this);
     }
 
+    /**
+     * UxMilkRepositoryのFactoryメソッド
+     * @return UxMilkRepository
+     */
     private UxMilkRepository createMilkRepository(){
         return new UxMilkRepository();
     }
