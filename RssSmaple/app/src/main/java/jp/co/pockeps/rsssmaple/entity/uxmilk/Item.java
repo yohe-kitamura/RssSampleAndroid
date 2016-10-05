@@ -20,7 +20,7 @@ public class Item {
     public String link;
 
     @Element(required=false)
-    private String pubDate;
+    public String pubDate;
 
     @Element(required=false)
     public String description;

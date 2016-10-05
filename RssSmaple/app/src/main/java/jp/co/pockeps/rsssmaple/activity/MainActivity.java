@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
         Toast.makeText(this, "読み込みに失敗しました。", Toast.LENGTH_SHORT).show();
     }
 
-    private UxMilkListPresenter createPresenter() {
+    protected UxMilkListPresenter createPresenter() {
         return new UxMilkListPresenter(this);
     }
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
      * @return 起動Intent
      */
     @NonNull
-    public static CustomTabsIntent getCustomTabsIntent(Context context) {
+    protected CustomTabsIntent getCustomTabsIntent(Context context) {
         return new CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))

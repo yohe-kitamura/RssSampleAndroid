@@ -52,7 +52,7 @@ public class UxMilkRepository {
 
             @Override
             public void onNext(Response<UxMilkRss> uxMilkRssResponse) {
-                listener.OnSuccess(uxMilkRssResponse);
+                listener.onSuccess(uxMilkRssResponse.body());
             }
         });
     }
