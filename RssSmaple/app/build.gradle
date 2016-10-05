@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'rsssample'
+            keyPassword 'opt634-15'
+            storeFile file('/Users/kitamurayouhei/Documents/dev/keys/rsssample/key.jks')
+            storePassword 'opt634-15'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
@@ -14,24 +22,21 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     return void;
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
-
     //okhttp
     compile 'com.squareup.okhttp:okhttp:2.4.0'
-
     //Rx
     compile 'io.reactivex:rxandroid:1.2.0'
-
     //Retrofit
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
@@ -40,20 +45,16 @@ dependencies {
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
-
     //ButterKnife
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
     //Dagger2
     compile 'com.google.dagger:dagger:2.0.2'
     androidTestApt 'com.google.dagger:dagger-compiler:2.0.2'
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     provided 'javax.annotation:jsr250-api:1.0'
-
     //Chorme Custom Tab
     compile 'com.android.support:customtabs:24.2.1'
-
     //Espresso
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -68,7 +69,6 @@ dependencies {
     androidTestCompile 'org.mockito:mockito-core:1.9.5'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
-
     //JUnit
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
