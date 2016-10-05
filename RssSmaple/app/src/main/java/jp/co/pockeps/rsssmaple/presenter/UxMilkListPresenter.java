@@ -1,5 +1,7 @@
 package jp.co.pockeps.rsssmaple.presenter;
 
+import javax.inject.Inject;
+
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
 import jp.co.pockeps.rsssmaple.repository.NetworkListener;
 import jp.co.pockeps.rsssmaple.repository.UxMilkRepository;
@@ -9,7 +11,14 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
 
     private UxMilkListView view;
 
-    public UxMilkListPresenter(UxMilkListView view) {
+    UxMilkRepository repository;
+
+    @Inject
+    UxMilkListPresenter(UxMilkRepository repository) {
+        this.repository = repository;
+    }
+
+    public void setView(UxMilkListView view){
         this.view = view;
     }
 
@@ -17,16 +26,7 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
      * データ取得
      */
     public void loadDate(){
-        UxMilkRepository repository = createMilkRepository();
         repository.getUxMilkRss(this);
-    }
-
-    /**
-     * UxMilkRepositoryのFactoryメソッド
-     * @return UxMilkRepository
-     */
-    private UxMilkRepository createMilkRepository(){
-        return new UxMilkRepository();
     }
 
     @Override

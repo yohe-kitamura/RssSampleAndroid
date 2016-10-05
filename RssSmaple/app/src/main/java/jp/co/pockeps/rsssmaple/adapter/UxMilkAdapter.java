@@ -45,7 +45,7 @@ public class UxMilkAdapter extends ArrayAdapter<Item> {
     class ViewHolder {
         @BindView(R.id.pub_date) TextView pubDate;
         @BindView(R.id.title) TextView title;
-        @BindView(R.id.discription) TextView description;
+        @BindView(R.id.description) TextView description;
 
         ViewHolder(View view) {
             butterknife.ButterKnife.bind(this, view);

@@ -19,8 +19,7 @@ public class Item {
     @Element(required=false)
     public String link;
 
-    @Element(required=false)
-    public String pubDate;
+    @Element(required=false) private String pubDate;
 
     @Element(required=false)
     public String description;
@@ -36,5 +35,16 @@ public class Item {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @SuppressWarnings("unused")
+    public Item() {
+    }
+
+    public Item(String title, String link, String pubDate, String description) {
+        this.title = title;
+        this.link = link;
+        this.pubDate = pubDate;
+        this.description = description;
     }
 }

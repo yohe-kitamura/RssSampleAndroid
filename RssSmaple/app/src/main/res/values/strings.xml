@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RssSmaple</string>
+    <string name="message_network_failed">読み込みに失敗しました。</string>
 </resources>

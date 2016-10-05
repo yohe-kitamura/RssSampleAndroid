@@ -40,7 +40,7 @@
         android:layout_alignEnd="@+id/title"
         android:layout_marginTop="4dp"
         android:textSize="14sp"
-        android:id="@+id/discription"
+        android:id="@+id/description"
         android:maxLines="3"
         android:ellipsize="end"
         android:textColor="#000000"

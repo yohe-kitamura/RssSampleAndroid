@@ -12,12 +12,16 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import butterknife.Unbinder;
+import jp.co.pockeps.rsssmaple.MyApplication;
 import jp.co.pockeps.rsssmaple.R;
 import jp.co.pockeps.rsssmaple.adapter.UxMilkAdapter;
+import jp.co.pockeps.rsssmaple.di.component.AppComponent;
 import jp.co.pockeps.rsssmaple.entity.uxmilk.Item;
 import jp.co.pockeps.rsssmaple.presenter.UxMilkListPresenter;
 import jp.co.pockeps.rsssmaple.view.UxMilkListView;
@@ -25,17 +29,43 @@ import jp.co.pockeps.rsssmaple.view.UxMilkListView;
 public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
     @BindView(android.R.id.list) ListView list;
-    private UxMilkListPresenter presenter;
+
+    @Inject UxMilkListPresenter presenter;
     private Unbinder bind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bind = ButterKnife.bind(this);
 
-        presenter = createPresenter();
+        bind = ButterKnife.bind(this);
+        getApplicationComponent().inject(this);
+
+        initPresenter();
+        loadData();
+    }
+
+    /**
+     * Presenterの初期化
+     */
+    private void initPresenter() {
+        presenter.setView(this);
+    }
+
+    /**
+     * データロード
+     */
+    private void loadData() {
         presenter.loadDate();
+    }
+
+    /**
+     * AppComponent取得
+     *
+     * @return AppComponent
+     */
+    private AppComponent getApplicationComponent() {
+        return ((MyApplication) getApplication()).getApplicationComponent();
     }
 
     @Override
@@ -57,11 +87,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
     @Override
     public void loadError() {
-        Toast.makeText(this, "読み込みに失敗しました。", Toast.LENGTH_SHORT).show();
-    }
-
-    protected UxMilkListPresenter createPresenter() {
-        return new UxMilkListPresenter(this);
+        Toast.makeText(this, R.string.message_network_failed, Toast.LENGTH_SHORT).show();
     }
 
     @OnItemClick(android.R.id.list)
@@ -74,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
     /**
      * ChromeCustomTab起動用Intent取得
+     *
      * @param context 色取得用
      * @return 起動Intent
      */
