@@ -28,9 +28,13 @@ import jp.co.pockeps.rsssmaple.view.UxMilkListView;
 
 public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
-    @BindView(android.R.id.list) ListView list;
+    @SuppressWarnings("WeakerAccess")
+    @BindView(android.R.id.list)
+    ListView list;
 
-    @Inject UxMilkListPresenter presenter;
+    @SuppressWarnings("WeakerAccess")
+    @Inject
+    UxMilkListPresenter presenter;
     private Unbinder bind;
 
     @Override
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
     /**
      * クリーンアップ
      */
-    private void cleanUp(){
+    private void cleanUp() {
         bind.unbind();
         presenter.setView(null);
     }
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
      * @param context 色取得用
      * @return 起動Intent
      */
+    @SuppressWarnings("WeakerAccess")
     @NonNull
     protected CustomTabsIntent getCustomTabsIntent(Context context) {
         return new CustomTabsIntent.Builder()

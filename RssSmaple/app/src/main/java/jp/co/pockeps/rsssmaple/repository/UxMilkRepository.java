@@ -16,6 +16,7 @@ public class UxMilkRepository {
 
     /**
      * UxMilkRssを取得
+     *
      * @param listener コールバック用リスナー
      */
     public void getUxMilkRss(final NetworkListener<UxMilkRss> listener) {
@@ -37,7 +38,8 @@ public class UxMilkRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io()).subscribe(new Subscriber<Response<UxMilkRss>>() {
             @Override
-            public void onCompleted() {}
+            public void onCompleted() {
+            }
 
             @Override
             public void onError(Throwable e) {

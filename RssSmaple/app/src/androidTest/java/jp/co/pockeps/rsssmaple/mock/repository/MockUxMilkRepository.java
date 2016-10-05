@@ -1,18 +1,18 @@
-package jp.co.pockeps.rsssmaple.repository;
+package jp.co.pockeps.rsssmaple.mock.repository;
 
 import java.util.List;
 
 import jp.co.pockeps.rsssmaple.entity.uxmilk.Channel;
 import jp.co.pockeps.rsssmaple.entity.uxmilk.Item;
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
+import jp.co.pockeps.rsssmaple.repository.NetworkListener;
+import jp.co.pockeps.rsssmaple.repository.UxMilkRepository;
 
 public abstract class MockUxMilkRepository extends UxMilkRepository {
 
-    private static final String TAG = "UxMilkRepository";
+    private final List<Item> items;
 
-    private List<Item> items;
-
-    public MockUxMilkRepository(List<Item> items) {
+    protected MockUxMilkRepository(List<Item> items) {
         this.items = items;
     }
 
@@ -22,7 +22,7 @@ public abstract class MockUxMilkRepository extends UxMilkRepository {
      */
     public abstract void getUxMilkRss(final NetworkListener<UxMilkRss> listener);
 
-    public void SuccessCase(NetworkListener<UxMilkRss> listener) {
+    protected void SuccessCase(NetworkListener<UxMilkRss> listener) {
         if (listener == null) {
             throw new IllegalArgumentException("listener should not null ");
         }
@@ -35,7 +35,7 @@ public abstract class MockUxMilkRepository extends UxMilkRepository {
         listener.onSuccess(rss);
     }
 
-    public void failureCase(NetworkListener<UxMilkRss> listener){
+    protected void failureCase(NetworkListener<UxMilkRss> listener){
         listener.onFailure();
     }
 }

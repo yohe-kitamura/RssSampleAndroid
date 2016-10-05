@@ -11,23 +11,22 @@ import jp.co.pockeps.rsssmaple.view.UxMilkListView;
 
 public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
 
+    @SuppressWarnings("WeakerAccess") final UxMilkRepository repository;
     @Nullable private UxMilkListView view;
-
-    UxMilkRepository repository;
 
     @Inject
     UxMilkListPresenter(UxMilkRepository repository) {
         this.repository = repository;
     }
 
-    public void setView(@Nullable UxMilkListView view){
+    public void setView(@Nullable UxMilkListView view) {
         this.view = view;
     }
 
     /**
      * データ取得
      */
-    public void loadDate(){
+    public void loadDate() {
         repository.getUxMilkRss(this);
     }
 

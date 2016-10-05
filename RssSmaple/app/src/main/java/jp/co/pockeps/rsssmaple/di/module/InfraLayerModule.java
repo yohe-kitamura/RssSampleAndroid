@@ -8,7 +8,7 @@ import jp.co.pockeps.rsssmaple.repository.UxMilkRepository;
 public class InfraLayerModule {
 
     @Provides
-    public UxMilkRepository provideUxMilkRepository(){
+    public UxMilkRepository provideUxMilkRepository() {
         return new UxMilkRepository();
     }
 }

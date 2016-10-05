@@ -4,6 +4,7 @@ public interface NetworkListener<T> {
 
     /**
      * 通信成功
+     *
      * @param response レスポンス
      */
     void onSuccess(T response);

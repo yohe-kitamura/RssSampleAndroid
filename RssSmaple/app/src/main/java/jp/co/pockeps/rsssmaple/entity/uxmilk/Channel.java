@@ -7,6 +7,6 @@ import java.util.List;
 
 @Root(strict = false)
 public class Channel {
-    @ElementList(name = "item",inline=true)
+    @ElementList(name = "item", inline = true)
     public List<Item> items;
 }

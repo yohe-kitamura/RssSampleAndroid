@@ -16,12 +16,12 @@ public class MyApplication extends Application {
         initializeInjector();
     }
 
-    private void initializeInjector(){
+    private void initializeInjector() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this)).build();
     }
 
-    public AppComponent getApplicationComponent(){
+    public AppComponent getApplicationComponent() {
         return appComponent;
     }
 

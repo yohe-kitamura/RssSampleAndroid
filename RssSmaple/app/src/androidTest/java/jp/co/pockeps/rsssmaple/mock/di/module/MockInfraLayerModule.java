@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssmaple.di.module;
+package jp.co.pockeps.rsssmaple.mock.di.module;
 
 import android.support.annotation.NonNull;
 
@@ -9,7 +9,7 @@ import jp.co.pockeps.rsssmaple.repository.UxMilkRepository;
 @Module
 public class MockInfraLayerModule {
 
-    UxMilkRepository repository;
+    final UxMilkRepository repository;
 
     public MockInfraLayerModule(@NonNull UxMilkRepository repository) {
         this.repository = repository;

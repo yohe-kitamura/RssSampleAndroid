@@ -16,12 +16,12 @@ import java.util.List;
 
 import jp.co.pockeps.rsssmaple.MyApplication;
 import jp.co.pockeps.rsssmaple.R;
-import jp.co.pockeps.rsssmaple.di.component.DaggerMockAppComponent;
 import jp.co.pockeps.rsssmaple.di.module.AppModule;
-import jp.co.pockeps.rsssmaple.di.module.MockInfraLayerModule;
 import jp.co.pockeps.rsssmaple.entity.uxmilk.Item;
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
-import jp.co.pockeps.rsssmaple.repository.MockUxMilkRepository;
+import jp.co.pockeps.rsssmaple.mock.di.component.DaggerMockAppComponent;
+import jp.co.pockeps.rsssmaple.mock.di.module.MockInfraLayerModule;
+import jp.co.pockeps.rsssmaple.mock.repository.MockUxMilkRepository;
 import jp.co.pockeps.rsssmaple.repository.NetworkListener;
 
 import static android.support.test.espresso.Espresso.*;
@@ -44,7 +44,7 @@ import static org.hamcrest.Matchers.not;
 @SmallTest
 public class MainActivityTest {
     @Rule
-    public ActivityTestRule<MainActivity> activityTestRule = new IntentsTestRule<>(MainActivity.class, true, false);
+    public final ActivityTestRule<MainActivity> activityTestRule = new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test
     public void validateListItem() throws Throwable {
