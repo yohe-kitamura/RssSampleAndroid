@@ -1,5 +1,7 @@
 package jp.co.pockeps.rsssmaple.repository;
 
+import android.support.annotation.NonNull;
+
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
 import jp.co.pockeps.rsssmaple.network.UxMilkService;
 import retrofit2.Response;
@@ -19,11 +21,7 @@ public class UxMilkRepository {
      *
      * @param listener コールバック用リスナー
      */
-    public void getUxMilkRss(final NetworkListener<UxMilkRss> listener) {
-
-        if (listener == null) {
-            throw new IllegalArgumentException("listener should not null ");
-        }
+    public void getUxMilkRss(@NonNull final NetworkListener<UxMilkRss> listener) {
 
         //Retrofit
         Retrofit retrofit = new Retrofit.Builder()

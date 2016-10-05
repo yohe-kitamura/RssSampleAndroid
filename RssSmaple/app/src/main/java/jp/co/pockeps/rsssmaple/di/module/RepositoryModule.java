@@ -5,10 +5,10 @@ import dagger.Provides;
 import jp.co.pockeps.rsssmaple.repository.UxMilkRepository;
 
 @Module
-public class InfraLayerModule {
+public class RepositoryModule {
 
     @Provides
-    public UxMilkRepository provideUxMilkRepository() {
+    UxMilkRepository provideUxMilkRepository() {
         return new UxMilkRepository();
     }
 }

@@ -1,6 +1,7 @@
 package jp.co.pockeps.rsssmaple.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.SmallTest;
@@ -104,7 +105,7 @@ public class MainActivityTest {
         List<Item> list = Arrays.asList(items);
         setMockComponent(new MockUxMilkRepository(list) {
             @Override
-            public void getUxMilkRss(NetworkListener<UxMilkRss> listener) {
+            public void getUxMilkRss(@NonNull NetworkListener<UxMilkRss> listener) {
                 SuccessCase(listener);
             }
         });
@@ -113,7 +114,7 @@ public class MainActivityTest {
     private void setFailureMockComponent() {
         setMockComponent(new MockUxMilkRepository(null) {
             @Override
-            public void getUxMilkRss(NetworkListener<UxMilkRss> listener) {
+            public void getUxMilkRss(@NonNull NetworkListener<UxMilkRss> listener) {
                 failureCase(listener);
             }
         });

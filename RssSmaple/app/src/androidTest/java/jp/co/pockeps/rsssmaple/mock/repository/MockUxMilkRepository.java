@@ -1,5 +1,7 @@
 package jp.co.pockeps.rsssmaple.mock.repository;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 import jp.co.pockeps.rsssmaple.entity.uxmilk.Channel;
@@ -20,7 +22,7 @@ public abstract class MockUxMilkRepository extends UxMilkRepository {
      * UxMilkRssを取得
      * @param listener コールバック用リスナー
      */
-    public abstract void getUxMilkRss(final NetworkListener<UxMilkRss> listener);
+    public abstract void getUxMilkRss(@NonNull final NetworkListener<UxMilkRss> listener);
 
     protected void SuccessCase(NetworkListener<UxMilkRss> listener) {
         if (listener == null) {
