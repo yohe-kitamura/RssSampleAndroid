@@ -1,7 +1,5 @@
 package jp.co.pockeps.rsssmaple.repository;
 
-import android.util.Log;
-
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
 import jp.co.pockeps.rsssmaple.network.UxMilkService;
 import retrofit2.Response;
@@ -15,8 +13,6 @@ import rx.schedulers.Schedulers;
 import static jp.co.pockeps.rsssmaple.Constant.Url.UX_MILK;
 
 public class UxMilkRepository {
-
-    private static final String TAG = "UxMilkRepository";
 
     /**
      * UxMilkRssを取得
@@ -41,9 +37,7 @@ public class UxMilkRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io()).subscribe(new Subscriber<Response<UxMilkRss>>() {
             @Override
-            public void onCompleted() {
-                Log.e(TAG, "onCompleted: ");
-            }
+            public void onCompleted() {}
 
             @Override
             public void onError(Throwable e) {

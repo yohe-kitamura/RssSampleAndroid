@@ -1,5 +1,7 @@
 package jp.co.pockeps.rsssmaple.presenter;
 
+import android.support.annotation.Nullable;
+
 import javax.inject.Inject;
 
 import jp.co.pockeps.rsssmaple.entity.uxmilk.UxMilkRss;
@@ -9,7 +11,7 @@ import jp.co.pockeps.rsssmaple.view.UxMilkListView;
 
 public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
 
-    private UxMilkListView view;
+    @Nullable private UxMilkListView view;
 
     UxMilkRepository repository;
 
@@ -18,7 +20,7 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
         this.repository = repository;
     }
 
-    public void setView(UxMilkListView view){
+    public void setView(@Nullable UxMilkListView view){
         this.view = view;
     }
 
@@ -31,12 +33,16 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
 
     @Override
     public void onSuccess(UxMilkRss response) {
-        view.fetchData(response.getItems());
+        if (view != null) {
+            view.fetchData(response.getItems());
+        }
     }
 
     @Override
     public void onFailure() {
-        view.loadError();
+        if (view != null) {
+            view.loadError();
+        }
     }
 
 }

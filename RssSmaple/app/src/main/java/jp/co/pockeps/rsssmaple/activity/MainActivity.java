@@ -38,18 +38,31 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bind = ButterKnife.bind(this);
-        getApplicationComponent().inject(this);
-
-        initPresenter();
+        setUp();
         loadData();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cleanUp();
+    }
+
     /**
-     * Presenterの初期化
+     * セットアップ
      */
-    private void initPresenter() {
+    private void setUp() {
+        getApplicationComponent().inject(this);
+        bind = ButterKnife.bind(this);
         presenter.setView(this);
+    }
+
+    /**
+     * クリーンアップ
+     */
+    private void cleanUp(){
+        bind.unbind();
+        presenter.setView(null);
     }
 
     /**
@@ -66,17 +79,6 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
      */
     private AppComponent getApplicationComponent() {
         return ((MyApplication) getApplication()).getApplicationComponent();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        bind.unbind();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
