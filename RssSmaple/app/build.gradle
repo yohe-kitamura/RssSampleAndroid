@@ -27,6 +27,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/notice.txt'
+    }
+
     return void;
 }
 
@@ -53,8 +66,12 @@ dependencies {
     androidTestApt 'com.google.dagger:dagger-compiler:2.0.2'
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     provided 'javax.annotation:jsr250-api:1.0'
-    //Chorme Custom Tab
+    //Chrome Custom Tab
     compile 'com.android.support:customtabs:24.2.1'
+    //Jackson
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.4'
+    //realm
+    compile 'io.realm:realm-android:0.86.0'
     //Espresso
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -72,4 +89,7 @@ dependencies {
     //JUnit
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
+    //LeakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
 }
