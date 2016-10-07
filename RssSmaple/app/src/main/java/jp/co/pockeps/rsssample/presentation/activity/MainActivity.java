@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample.activity;
+package jp.co.pockeps.rsssample.presentation.activity;
 
 import android.content.Context;
 import android.net.Uri;
@@ -18,12 +18,12 @@ import butterknife.OnItemClick;
 import butterknife.Unbinder;
 import jp.co.pockeps.rsssample.MyApplication;
 import jp.co.pockeps.rsssample.R;
-import jp.co.pockeps.rsssample.adapter.ArticleAdapter;
-import jp.co.pockeps.rsssample.di.component.AppComponent;
+import jp.co.pockeps.rsssample.presentation.adapter.ArticleAdapter;
+import jp.co.pockeps.rsssample.presentation.di.component.AppComponent;
 import jp.co.pockeps.rsssample.entity.Article;
 import jp.co.pockeps.rsssample.entity.Articles;
-import jp.co.pockeps.rsssample.presenter.ArticleListPresenter;
-import jp.co.pockeps.rsssample.view.UxMilkListView;
+import jp.co.pockeps.rsssample.presentation.presenter.ArticleListPresenter;
+import jp.co.pockeps.rsssample.presentation.view.UxMilkListView;
 
 public class MainActivity extends AppCompatActivity implements UxMilkListView {
 

@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample.adapter;
+package jp.co.pockeps.rsssample.presentation.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

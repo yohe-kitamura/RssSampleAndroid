@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample;
+package jp.co.pockeps.rsssample.util;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;

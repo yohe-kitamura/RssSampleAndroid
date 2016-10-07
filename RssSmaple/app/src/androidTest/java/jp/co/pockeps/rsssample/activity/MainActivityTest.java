@@ -17,7 +17,8 @@ import java.util.List;
 
 import jp.co.pockeps.rsssample.MyApplication;
 import jp.co.pockeps.rsssample.R;
-import jp.co.pockeps.rsssample.di.module.AppModule;
+import jp.co.pockeps.rsssample.presentation.activity.MainActivity;
+import jp.co.pockeps.rsssample.presentation.di.module.AppModule;
 import jp.co.pockeps.rsssample.entity.Articles;
 import jp.co.pockeps.rsssample.entity.uxmilk.Item;
 import jp.co.pockeps.rsssample.mock.di.component.DaggerMockAppComponent;

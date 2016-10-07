@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample.di.module;
+package jp.co.pockeps.rsssample.presentation.di.module;
 
 import dagger.Module;
 import dagger.Provides;

@@ -3,7 +3,7 @@ package jp.co.pockeps.rsssample.entity.uxmilk;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import jp.co.pockeps.rsssample.DateUtil;
+import jp.co.pockeps.rsssample.util.DateUtil;
 import jp.co.pockeps.rsssample.entity.Article;
 
 @Root(strict = false)

@@ -8,6 +8,7 @@ import org.junit.runners.JUnit4;
 import org.mockito.*;
 
 import jp.co.pockeps.rsssample.entity.Articles;
+import jp.co.pockeps.rsssample.presentation.presenter.ArticleListPresenter;
 import jp.co.pockeps.rsssample.repository.NetworkListener;
 import jp.co.pockeps.rsssample.repository.UxMilkRepository;
 import rx.Scheduler;

@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample.presenter;
+package jp.co.pockeps.rsssample.presentation.presenter;
 
 import android.support.annotation.Nullable;
 
@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import jp.co.pockeps.rsssample.entity.Articles;
 import jp.co.pockeps.rsssample.repository.NetworkListener;
 import jp.co.pockeps.rsssample.repository.UxMilkRepository;
-import jp.co.pockeps.rsssample.view.UxMilkListView;
+import jp.co.pockeps.rsssample.presentation.view.UxMilkListView;
 
 public class ArticleListPresenter implements NetworkListener<Articles> {
 

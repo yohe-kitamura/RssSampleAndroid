@@ -4,9 +4,9 @@ import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 
-import jp.co.pockeps.rsssample.di.component.AppComponent;
+import jp.co.pockeps.rsssample.presentation.di.component.AppComponent;
 import jp.co.pockeps.rsssample.di.component.DaggerAppComponent;
-import jp.co.pockeps.rsssample.di.module.AppModule;
+import jp.co.pockeps.rsssample.presentation.di.module.AppModule;
 
 public class MyApplication extends Application {
 

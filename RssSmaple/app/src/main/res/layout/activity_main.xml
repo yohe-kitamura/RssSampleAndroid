@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/default_padding"
-    tools:context="jp.co.pockeps.rsssample.activity.MainActivity">
+    tools:context="jp.co.pockeps.rsssample.presentation.activity.MainActivity">
 
     <ListView
         android:id="@android:id/list"

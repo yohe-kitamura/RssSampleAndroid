@@ -1,4 +1,4 @@
-package jp.co.pockeps.rsssample.view;
+package jp.co.pockeps.rsssample.presentation.view;
 
 import jp.co.pockeps.rsssample.entity.Articles;
 
