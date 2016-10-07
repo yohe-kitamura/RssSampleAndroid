@@ -1,12 +1,10 @@
 package jp.co.pockeps.rsssample.view;
 
-import java.util.List;
-
-import jp.co.pockeps.rsssample.entity.uxmilk.Item;
+import jp.co.pockeps.rsssample.entity.Articles;
 
 public interface UxMilkListView {
 
-    void fetchData(List<Item> items);
+    void fetchData(Articles articles);
 
     void loadError();
 

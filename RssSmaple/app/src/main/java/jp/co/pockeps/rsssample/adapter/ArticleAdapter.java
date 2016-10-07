@@ -7,16 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.List;
-
 import butterknife.BindView;
 import jp.co.pockeps.rsssample.R;
-import jp.co.pockeps.rsssample.entity.uxmilk.Item;
+import jp.co.pockeps.rsssample.entity.Article;
+import jp.co.pockeps.rsssample.entity.Articles;
 
-public class UxMilkAdapter extends ArrayAdapter<Item> {
+public class ArticleAdapter extends ArrayAdapter<Article> {
 
-    public UxMilkAdapter(Context context, List<Item> objects) {
-        super(context, 0, objects);
+    public ArticleAdapter(Context context, Articles articles) {
+        super(context, 0, articles.getArticles());
     }
 
     @NonNull
@@ -33,10 +32,10 @@ public class UxMilkAdapter extends ArrayAdapter<Item> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Item item = getItem(position);
+        Article item = getItem(position);
         if (item != null) {
             viewHolder.title.setText(item.title);
-            viewHolder.pubDate.setText(item.formatPubDate());
+            viewHolder.pubDate.setText(item.getPubDateFormatString());
             viewHolder.description.setText(item.description);
         }
         return convertView;

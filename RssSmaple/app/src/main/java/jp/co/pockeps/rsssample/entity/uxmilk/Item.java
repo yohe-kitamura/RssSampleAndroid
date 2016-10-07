@@ -1,27 +1,27 @@
 package jp.co.pockeps.rsssample.entity.uxmilk;
 
-import android.text.format.DateFormat;
-
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import jp.co.pockeps.rsssample.DateUtil;
+import jp.co.pockeps.rsssample.entity.Article;
 
 @Root(strict = false)
 public class Item {
 
-    @Element(required = false)
-    public String title;
+    private static final String DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss Z";
 
     @Element(required = false)
-    public String link;
+    private String title;
+
     @Element(required = false)
-    public String description;
-    public boolean isFavorite;
-    @Element(required = false) private String pubDate;
+    private String link;
+
+    @Element(required = false)
+    private String description;
+
+    @Element(required = false)
+    private String pubDate;
 
     @SuppressWarnings("unused")
     public Item() {
@@ -34,14 +34,7 @@ public class Item {
         this.description = description;
     }
 
-    public String formatPubDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
-        try {
-            Date date = simpleDateFormat.parse(pubDate);
-            return String.valueOf(DateFormat.format("yyyy/MM/dd", date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return "";
+    public Article createArticle() {
+        return new Article(title, link, description, DateUtil.convertDateFromStr(DATE_FORMAT, pubDate), null);
     }
 }

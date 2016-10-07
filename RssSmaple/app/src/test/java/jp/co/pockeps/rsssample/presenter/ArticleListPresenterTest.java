@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.*;
 
-import jp.co.pockeps.rsssample.entity.uxmilk.UxMilkRss;
+import jp.co.pockeps.rsssample.entity.Articles;
 import jp.co.pockeps.rsssample.repository.NetworkListener;
 import jp.co.pockeps.rsssample.repository.UxMilkRepository;
 import rx.Scheduler;
@@ -19,7 +19,7 @@ import static org.mockito.Matchers.*;
 
 @SuppressWarnings("unchecked")
 @RunWith(JUnit4.class)
-public class UxMilkListPresenterTest {
+public class ArticleListPresenterTest {
 
     @Before
     public void setUp() throws Exception {
@@ -39,11 +39,11 @@ public class UxMilkListPresenterTest {
     @Test
     public void loadDate() throws Exception {
         UxMilkRepository repository = Mockito.spy(new UxMilkRepository());
-        UxMilkListPresenter presenter = new UxMilkListPresenter(repository);
+        ArticleListPresenter presenter = new ArticleListPresenter(repository);
 
         presenter.loadDate();
 
-        Mockito.verify(repository, Mockito.times(1)).getUxMilkRss((NetworkListener<UxMilkRss>) any());
+        Mockito.verify(repository, Mockito.times(1)).getUxMilkRss((NetworkListener<Articles>) any());
     }
 
 }

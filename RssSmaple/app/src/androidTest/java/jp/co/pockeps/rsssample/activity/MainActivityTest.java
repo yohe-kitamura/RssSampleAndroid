@@ -18,8 +18,8 @@ import java.util.List;
 import jp.co.pockeps.rsssample.MyApplication;
 import jp.co.pockeps.rsssample.R;
 import jp.co.pockeps.rsssample.di.module.AppModule;
+import jp.co.pockeps.rsssample.entity.Articles;
 import jp.co.pockeps.rsssample.entity.uxmilk.Item;
-import jp.co.pockeps.rsssample.entity.uxmilk.UxMilkRss;
 import jp.co.pockeps.rsssample.mock.di.component.DaggerMockAppComponent;
 import jp.co.pockeps.rsssample.mock.di.module.MockInfraLayerModule;
 import jp.co.pockeps.rsssample.mock.repository.MockUxMilkRepository;
@@ -44,6 +44,10 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 @SmallTest
 public class MainActivityTest {
+    private static final String VALUE_TITLE = "タイトル";
+    private static final String VALUE_LINK = "http://qiita.com/arenahito/items/d9bbca61c8a67cfad226";
+    private static final String VALUE_PUB_DATE = "Thu, 29 Sep 2016 10:30:55 +0000";
+    private static final String VALUE_DESCRIPTION = "説明";
     @Rule
     public final ActivityTestRule<MainActivity> activityTestRule = new IntentsTestRule<>(MainActivity.class, true, false);
 
@@ -51,23 +55,23 @@ public class MainActivityTest {
     public void validateListItem() throws Throwable {
 
         //Mock Data セット
-        Item item = new Item("タイトル", "http://qiita.com/arenahito/items/d9bbca61c8a67cfad226", "Thu, 29 Sep 2016 22:30:55 +0000", "説明");
-        Item item2 = new Item("", "http://qiita.com/arenahito/items/d9bbca61c8a67cfad226", "Thu, 29 Sep 2016 22:30:55 +0000", "説明");
-        Item item3 = new Item("タイトル", "http://qiita.com/arenahito/items/d9bbca61c8a67cfad226", "", "説明");
-        Item item4 = new Item("タイトル", "http://qiita.com/arenahito/items/d9bbca61c8a67cfad226", "Thu, 29 Sep 2016 22:30:55 +0000", "");
+        Item item = new Item(VALUE_TITLE, VALUE_LINK, VALUE_PUB_DATE, VALUE_DESCRIPTION);
+        Item item2 = new Item("", VALUE_LINK, VALUE_PUB_DATE, VALUE_DESCRIPTION);
+        Item item3 = new Item(VALUE_TITLE, VALUE_LINK, "", VALUE_DESCRIPTION);
+        Item item4 = new Item(VALUE_TITLE, VALUE_LINK, VALUE_PUB_DATE, "");
         setSuccessMockComponent(item, item2, item3, item4);
 
         activityTestRule.launchActivity(new Intent());
 
         //データ描画確認
         onData(anything()).inAdapterView(withId(android.R.id.list))
-                .atPosition(0).onChildView(withId(R.id.title)).check(matches(withText(item.title)));
+                .atPosition(0).onChildView(withId(R.id.title)).check(matches(withText(VALUE_TITLE)));
 
         onData(anything()).inAdapterView(withId(android.R.id.list))
-                .atPosition(0).onChildView(withId(R.id.description)).check(matches(withText(item.description)));
+                .atPosition(0).onChildView(withId(R.id.description)).check(matches(withText(VALUE_DESCRIPTION)));
 
         onData(anything()).inAdapterView(withId(android.R.id.list))
-                .atPosition(0).onChildView(withId(R.id.pub_date)).check(matches(withText(item.formatPubDate())));
+                .atPosition(0).onChildView(withId(R.id.pub_date)).check(matches(withText("2016/09/29")));
 
         //タイトルなし
         onData(anything()).inAdapterView(withId(android.R.id.list))
@@ -87,7 +91,7 @@ public class MainActivityTest {
                 .perform(click());
 
         intended(allOf(
-                hasData(item.link),
+                hasData(VALUE_LINK),
                 toPackage("com.android.chrome")));
     }
 
@@ -105,16 +109,16 @@ public class MainActivityTest {
         List<Item> list = Arrays.asList(items);
         setMockComponent(new MockUxMilkRepository(list) {
             @Override
-            public void getUxMilkRss(@NonNull NetworkListener<UxMilkRss> listener) {
+            public void getUxMilkRss(@NonNull NetworkListener<Articles> listener) {
                 SuccessCase(listener);
             }
         });
     }
 
     private void setFailureMockComponent() {
-        setMockComponent(new MockUxMilkRepository(null) {
+        setMockComponent(new MockUxMilkRepository() {
             @Override
-            public void getUxMilkRss(@NonNull NetworkListener<UxMilkRss> listener) {
+            public void getUxMilkRss(@NonNull NetworkListener<Articles> listener) {
                 failureCase(listener);
             }
         });

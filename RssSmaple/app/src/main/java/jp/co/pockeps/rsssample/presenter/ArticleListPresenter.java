@@ -4,18 +4,18 @@ import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import jp.co.pockeps.rsssample.entity.uxmilk.UxMilkRss;
+import jp.co.pockeps.rsssample.entity.Articles;
 import jp.co.pockeps.rsssample.repository.NetworkListener;
 import jp.co.pockeps.rsssample.repository.UxMilkRepository;
 import jp.co.pockeps.rsssample.view.UxMilkListView;
 
-public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
+public class ArticleListPresenter implements NetworkListener<Articles> {
 
     @SuppressWarnings("WeakerAccess") final UxMilkRepository repository;
     @Nullable private UxMilkListView view;
 
     @Inject
-    UxMilkListPresenter(UxMilkRepository repository) {
+    ArticleListPresenter(UxMilkRepository repository) {
         this.repository = repository;
     }
 
@@ -31,9 +31,9 @@ public class UxMilkListPresenter implements NetworkListener<UxMilkRss> {
     }
 
     @Override
-    public void onSuccess(UxMilkRss response) {
+    public void onSuccess(Articles response) {
         if (view != null) {
-            view.fetchData(response.getItems());
+            view.fetchData(response);
         }
     }
 

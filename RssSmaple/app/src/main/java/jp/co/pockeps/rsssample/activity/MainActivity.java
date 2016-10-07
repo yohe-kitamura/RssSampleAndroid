@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -20,10 +18,11 @@ import butterknife.OnItemClick;
 import butterknife.Unbinder;
 import jp.co.pockeps.rsssample.MyApplication;
 import jp.co.pockeps.rsssample.R;
-import jp.co.pockeps.rsssample.adapter.UxMilkAdapter;
+import jp.co.pockeps.rsssample.adapter.ArticleAdapter;
 import jp.co.pockeps.rsssample.di.component.AppComponent;
-import jp.co.pockeps.rsssample.entity.uxmilk.Item;
-import jp.co.pockeps.rsssample.presenter.UxMilkListPresenter;
+import jp.co.pockeps.rsssample.entity.Article;
+import jp.co.pockeps.rsssample.entity.Articles;
+import jp.co.pockeps.rsssample.presenter.ArticleListPresenter;
 import jp.co.pockeps.rsssample.view.UxMilkListView;
 
 public class MainActivity extends AppCompatActivity implements UxMilkListView {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
     @SuppressWarnings("WeakerAccess")
     @Inject
-    UxMilkListPresenter presenter;
+    ArticleListPresenter presenter;
     private Unbinder bind;
 
     @Override
@@ -86,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
     }
 
     @Override
-    public void fetchData(List<Item> items) {
+    public void fetchData(Articles articles) {
         //ListViewにデータセット
-        list.setAdapter(new UxMilkAdapter(getApplicationContext(), items));
+        list.setAdapter(new ArticleAdapter(getApplicationContext(), articles));
     }
 
     @Override
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements UxMilkListView {
 
     @OnItemClick(android.R.id.list)
     public void onListItemClick(int position) {
-        Item item = (Item) list.getItemAtPosition(position);
+        Article item = (Article) list.getItemAtPosition(position);
         // Chromeの起動
         final CustomTabsIntent tabsIntent = getCustomTabsIntent(getApplicationContext());
         tabsIntent.launchUrl(this, Uri.parse(item.link));
